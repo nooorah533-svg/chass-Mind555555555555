@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الاستراتيجيات التعليمية النوعية | مجمع السحن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #3b82f6;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 900;
+            box-shadow: 0 4px 15px rgba(123, 97, 255, 0.3);
+        }
+
+        .title-section h1 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .header-info {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 3px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Navigation */
+        .nav-tabs {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .nav-tabs-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 5px;
+        }
+
+        .nav-tab {
+            padding: 12px 25px;
+            background: var(--bg-light);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+        }
+
+        .nav-tab:hover {
+            background: var(--primary-light);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px rgba(123, 97, 255, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 0 50px;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dashboard Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            opacity: 0.1;
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 900;
+            font-family: 'Cairo', sans-serif;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Strategies Grid */
+        .strategies-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .strategies-header h2 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: white;
+        }
+
+        .add-btn {
+            padding: 15px 30px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .add-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .search-filter {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .search-input, .filter-select {
+            padding: 12px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 14px;
+            font-family: 'Tajawal', sans-serif;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-input:focus, .filter-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .strategy-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: slideUp 0.6s ease-out backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .strategy-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .strategy-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .strategy-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            opacity: 0.9;
+            flex-wrap: wrap;
+        }
+
+        .strategy-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .strategy-body {
+            padding: 20px;
+        }
+
+        .strategy-description {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .strategy-files {
+            margin-bottom: 15px;
+        }
+
+        .file-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            font-size: 12px;
+            margin: 5px 5px 5px 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .strategy-actions {
+            display: flex;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .edit-btn {
+            background: var(--success);
+            color: white;
+        }
+
+        .delete-btn {
+            background: var(--danger);
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: scaleUp 0.3s ease-out;
+        }
+
+        @keyframes scaleUp {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 25px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .close-modal {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .form-file {
+            padding: 15px;
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-file:hover {
+            border-color: var(--primary);
+            background: var(--bg-light);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(123, 97, 255, 0.4);
+        }
+
+        /* Impact Measurement */
+        .impact-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .impact-section h3 {
+            font-family: 'Cairo', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .chart-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: var(--bg-light);
+            border-radius: 15px;
+        }
+
+        .metric-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .progress-bar {
+            height: 30px;
+            background: var(--bg-light);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light), var(--secondary));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 13px;
+            transition: width 1s ease-out;
+        }
+
+        /* Teachers Stats */
+        .teachers-stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .teacher-stat-card {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            animation: slideUp 0.5s ease-out backwards;
+        }
+
+        .teacher-stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+
+        .teacher-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .teacher-info {
+            flex: 1;
+        }
+
+        .teacher-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .teacher-count {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .teacher-count strong {
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .no-teachers-message {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            font-size: 16px;
+            background: var(--bg-light);
+            border-radius: 15px;
+            grid-column: 1 / -1;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 0;
+            margin-top: 50px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .form-link {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .form-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .title-section h1 {
+                font-size: 20px;
+            }
+
+            .strategies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">تع</div>
+                    <div class="title-section">
+                        <h1>الاستراتيجيات التعليمية النوعية</h1>
+                        <div class="subtitle">مجمع السحن للبنات</div>
+                    </div>
+                </div>
+                <div class="header-info">
+                    <div class="info-item">
+                        <div class="info-label">المديرة</div>
+                        <div class="info-value">هلة النفيعي</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">صاحبة المبادرة</div>
+                        <div class="info-value">نورة المالكي</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">المشرفة</div>
+                        <div class="info-value">مشاعل الشريف</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <div class="container">
+            <div class="nav-tabs-container">
+                <div class="nav-tab active" data-section="dashboard">📊 لوحة التحكم</div>
+                <div class="nav-tab" data-section="strategies">📚 الاستراتيجيات</div>
+                <div class="nav-tab" data-section="impact">📈 قياس الأثر</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Dashboard Section -->
+            <div class="section active" id="dashboard">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6, #2563eb); color: white;">📚</div>
+                        <div class="stat-value" style="color: #3b82f6;">0</div>
+                        <div class="stat-label">إجمالي الاستراتيجيات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #059669); color: white;">👩‍🏫</div>
+                        <div class="stat-value" style="color: #10b981;">0</div>
+                        <div class="stat-label">المعلمات المشاركات</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white;">📄</div>
+                        <div class="stat-value" style="color: #f59e0b;">0</div>
+                        <div class="stat-label">أوراق العمل</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white;">⭐</div>
+                        <div class="stat-value" style="color: #8b5cf6;">0%</div>
+                        <div class="stat-label">معدل الرضا</div>
+                    </div>
+                </div>
+
+                <div class="impact-section">
+                    <h3>📊 نظرة عامة على الأداء</h3>
+                    <div class="chart-container">
+                        <div class="metric-row">
+                            <div class="metric-label">استراتيجيات التعلم النشط</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%;">85%</div>
+                            </div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-label">استراتيجيات التفكير الناقد</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 78%;">78%</div>
+                            </div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-label">استراتيجيات التعلم التعاوني</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 92%;">92%</div>
+                            </div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-label">استراتيجيات التقويم البنائي</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 88%;">88%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-section">
+                    <h3>👩‍🏫 إحصائيات المعلمات</h3>
+                    <p style="color: var(--text-light); margin-bottom: 20px;">عدد الاستراتيجيات المرفوعة لكل معلمة</p>
+                    <div id="teachersStats" class="teachers-stats-container">
+                        <!-- Teachers stats will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategies Section -->
+            <div class="section" id="strategies">
+                <div class="strategies-header">
+                    <h2>📚 مكتبة الاستراتيجيات التعليمية</h2>
+                    <button class="add-btn" onclick="openModal()">➕ إضافة استراتيجية جديدة</button>
+                </div>
+
+                <div class="search-filter">
+                    <input type="text" class="search-input" placeholder="🔍 البحث عن استراتيجية..." id="searchInput">
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="">جميع التصنيفات</option>
+                        <option value="active">التعلم النشط</option>
+                        <option value="critical">التفكير الناقد</option>
+                        <option value="collaborative">التعلم التعاوني</option>
+                        <option value="assessment">التقويم البنائي</option>
+                    </select>
+                </div>
+
+                <div class="strategies-grid" id="strategiesGrid">
+                    <!-- Strategies will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Impact Section -->
+            <div class="section" id="impact">
+                <div class="impact-section">
+                    <h3>📈 قياس الأثر والتقييم</h3>
+                    <p style="color: var(--text-light); margin-bottom: 30px;">تقييم شامل لتأثير الاستراتيجيات التعليمية على مستوى الطالبات</p>
+
+                    <div class="chart-container">
+                        <h4 style="margin-bottom: 20px; color: var(--primary);">مؤشرات الأداء الرئيسية</h4>
+                        
+                        <div class="metric-row">
+                            <div class="metric-label">تحسن الأداء الأكاديمي</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 89%;">89%</div>
+                            </div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-label">زيادة التفاعل الصفي</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 94%;">94%</div>
+                            </div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-label">تطوير مهارات التفكير</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 86%;">86%</div>
+                            </div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-label">رضا الطالبات</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 91%;">91%</div>
+                            </div>
+                        </div>
+                        <div class="metric-row">
+                            <div class="metric-label">رضا أولياء الأمور</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 87%;">87%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-section">
+                    <h3>🎯 التوصيات والتحسينات</h3>
+                    <div style="padding: 20px; background: var(--bg-light); border-radius: 15px; line-height: 2;">
+                        <p>✓ <strong>تعزيز:</strong> استراتيجيات التعلم التعاوني حققت أعلى نسبة رضا (92%)</p>
+                        <p>✓ <strong>تطوير:</strong> زيادة تنوع استراتيجيات التفكير الناقد</p>
+                        <p>✓ <strong>توسيع:</strong> مشاركة المزيد من المعلمات في رفع الاستراتيجيات</p>
+                        <p>✓ <strong>قياس:</strong> تطبيق استبيانات دورية لقياس الأثر على المدى الطويل</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div class="modal" id="strategyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">إضافة استراتيجية جديدة</h3>
+                <button class="close-modal" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="strategyForm" onsubmit="return saveStrategy(event)">
+                    <div class="form-group">
+                        <label class="form-label">اسم الاستراتيجية *</label>
+                        <input type="text" class="form-input" id="strategyName" required placeholder="مثال: استراتيجية التعلم التعاوني">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">اسم المعلمة *</label>
+                        <input type="text" class="form-input" id="teacherName" required placeholder="أدخل اسم المعلمة">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">التصنيف *</label>
+                        <select class="form-select" id="category" required>
+                            <option value="">اختر التصنيف</option>
+                            <option value="active">التعلم النشط</option>
+                            <option value="critical">التفكير الناقد</option>
+                            <option value="collaborative">التعلم التعاوني</option>
+                            <option value="assessment">التقويم البنائي</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">وصف الاستراتيجية *</label>
+                        <textarea class="form-textarea" id="description" required placeholder="وصف تفصيلي للاستراتيجية وكيفية تطبيقها..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">أوراق العمل والمرفقات</label>
+                        <div class="form-file">
+                            <input type="file" id="files" multiple accept=".pdf,.doc,.docx,.ppt,.pptx" style="display: none;">
+                            <p style="color: var(--text-light);">📎 اسحب الملفات هنا أو اضغط للاختيار</p>
+                            <small style="color: var(--text-light);">الصيغ المدعومة: PDF, Word, PowerPoint</small>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">💾 حفظ الاستراتيجية</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-title">نموذج جوجل لرفع الاستراتيجيات</div>
+                <p class="footer-text">يمكنك أيضاً رفع استراتيجيتك عبر نموذج جوجل</p>
+                <a href="https://forms.gle/bisb9pE43vJsGD2W8" target="_blank" class="form-link">📝 فتح النموذج</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data
+        let strategies = [];
+
+        let editingId = null;
+
+        // Categories mapping
+        const categories = {
+            'active': 'التعلم النشط',
+            'critical': 'التفكير الناقد',
+            'collaborative': 'التعلم التعاوني',
+            'assessment': 'التقويم البنائي'
+        };
+
+        const categoryColors = {
+            'active': '#3b82f6',
+            'critical': '#8b5cf6',
+            'collaborative': '#10b981',
+            'assessment': '#f59e0b'
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStrategies();
+            setupEventListeners();
+            updateTeachersStats();
+        });
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Tab navigation
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const section = this.dataset.section;
+                    switchSection(section);
+                });
+            });
+
+            // Search and filter
+            document.getElementById('searchInput').addEventListener('input', filterStrategies);
+            document.getElementById('categoryFilter').addEventListener('change', filterStrategies);
+
+            // File upload
+            const fileInput = document.getElementById('files');
+            const fileDiv = fileInput.parentElement;
+            fileDiv.addEventListener('click', () => fileInput.click());
+            
+            fileDiv.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                fileDiv.style.borderColor = 'var(--primary)';
+                fileDiv.style.background = 'var(--bg-light)';
+            });
+            
+            fileDiv.addEventListener('dragleave', () => {
+                fileDiv.style.borderColor = 'var(--border)';
+                fileDiv.style.background = 'white';
+            });
+            
+            fileDiv.addEventListener('drop', (e) => {
+                e.preventDefault();
+                fileInput.files = e.dataTransfer.files;
+                fileDiv.style.borderColor = 'var(--border)';
+                fileDiv.style.background = 'white';
+                updateFileDisplay();
+            });
+
+            fileInput.addEventListener('change', updateFileDisplay);
+        }
+
+        // Switch sections
+        function switchSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+        }
+
+        // Load strategies
+        function loadStrategies() {
+            const grid = document.getElementById('strategiesGrid');
+            grid.innerHTML = '';
+
+            if (strategies.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+                        <div style="font-size: 60px; margin-bottom: 20px;">📚</div>
+                        <h3 style="color: var(--primary); font-size: 24px; font-weight: 700; margin-bottom: 15px;">لا توجد استراتيجيات حالياً</h3>
+                        <p style="color: var(--text-light); font-size: 16px; margin-bottom: 25px;">ابدأ بإضافة أول استراتيجية تعليمية</p>
+                        <button class="add-btn" onclick="openModal()" style="display: inline-block;">➕ إضافة استراتيجية جديدة</button>
+                    </div>
+                `;
+                return;
+            }
+
+            strategies.forEach((strategy, index) => {
+                const card = createStrategyCard(strategy, index);
+                grid.appendChild(card);
+            });
+        }
+
+        // Create strategy card
+        function createStrategyCard(strategy, index) {
+            const card = document.createElement('div');
+            card.className = 'strategy-card';
+            card.style.animationDelay = `${index * 0.1}s`;
+
+            const categoryColor = categoryColors[strategy.category];
+            const categoryName = categories[strategy.category] || strategy.category;
+            
+            card.innerHTML = `
+                <div class="strategy-header" style="background: linear-gradient(135deg, ${categoryColor}, ${categoryColor}dd);">
+                    <div class="strategy-title">${strategy.name}</div>
+                    <div class="strategy-meta">
+                        <span>👩‍🏫 ${strategy.teacher}</span>
+                        <span>📚 ${categoryName}</span>
+                        <span>📅 ${strategy.date}</span>
+                    </div>
+                </div>
+                <div class="strategy-body">
+                    <div class="strategy-description">${strategy.description}</div>
+                    <div class="strategy-files">
+                        <strong>📎 المرفقات:</strong><br>
+                        ${strategy.files.map(file => `<span class="file-tag">${file}</span>`).join('')}
+                    </div>
+                    <div class="strategy-actions">
+                        <button class="action-btn view-btn" onclick="viewStrategy(${strategy.id})">👁️ عرض</button>
+                        <button class="action-btn edit-btn" onclick="editStrategy(${strategy.id})">✏️ تعديل</button>
+                        <button class="action-btn delete-btn" onclick="deleteStrategy(${strategy.id})">🗑️ حذف</button>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        // Filter strategies
+        function filterStrategies() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+
+            const filtered = strategies.filter(strategy => {
+                const matchesSearch = strategy.name.toLowerCase().includes(searchTerm) || 
+                                    strategy.teacher.toLowerCase().includes(searchTerm) ||
+                                    strategy.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = !categoryFilter || strategy.category === categoryFilter;
+                
+                return matchesSearch && matchesCategory;
+            });
+
+            const grid = document.getElementById('strategiesGrid');
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px; color: white; font-size: 18px;">لا توجد نتائج مطابقة للبحث 🔍</div>';
+            } else {
+                filtered.forEach((strategy, index) => {
+                    const card = createStrategyCard(strategy, index);
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        // Modal functions
+        function openModal() {
+            editingId = null;
+            document.getElementById('modalTitle').textContent = 'إضافة استراتيجية جديدة';
+            document.getElementById('strategyForm').reset();
+            document.getElementById('strategyModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('strategyModal').classList.remove('active');
+        }
+
+        // View strategy
+        function viewStrategy(id) {
+            const strategy = strategies.find(s => s.id === id);
+            if (strategy) {
+                alert(`عرض تفاصيل: ${strategy.name}\n\nالمعلمة: ${strategy.teacher}\nالتصنيف: ${categories[strategy.category]}\n\n${strategy.description}\n\nالمرفقات:\n${strategy.files.join('\n')}`);
+            }
+        }
+
+        // Edit strategy
+        function editStrategy(id) {
+            const strategy = strategies.find(s => s.id === id);
+            if (strategy) {
+                editingId = id;
+                document.getElementById('modalTitle').textContent = 'تعديل الاستراتيجية';
+                document.getElementById('strategyName').value = strategy.name;
+                document.getElementById('teacherName').value = strategy.teacher;
+                document.getElementById('category').value = strategy.category;
+                document.getElementById('description').value = strategy.description;
+                document.getElementById('strategyModal').classList.add('active');
+            }
+        }
+
+        // Delete strategy
+        function deleteStrategy(id) {
+            if (confirm('هل أنت متأكدة من حذف هذه الاستراتيجية؟')) {
+                strategies = strategies.filter(s => s.id !== id);
+                
+                // Reset search and filters
+                document.getElementById('searchInput').value = '';
+                document.getElementById('categoryFilter').value = '';
+                
+                loadStrategies();
+                updateStats();
+            }
+        }
+
+        // Save strategy
+        function saveStrategy(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            console.log('Save strategy called');
+            console.log('Current strategies count:', strategies.length);
+
+            const formData = {
+                name: document.getElementById('strategyName').value,
+                teacher: document.getElementById('teacherName').value,
+                category: document.getElementById('category').value,
+                description: document.getElementById('description').value,
+                files: getUploadedFiles(),
+                date: new Date().toISOString().split('T')[0]
+            };
+
+            console.log('Form data:', formData);
+
+            if (editingId) {
+                const index = strategies.findIndex(s => s.id === editingId);
+                if (index !== -1) {
+                    strategies[index] = { ...strategies[index], ...formData };
+                }
+            } else {
+                const newId = strategies.length > 0 ? Math.max(...strategies.map(s => s.id)) + 1 : 1;
+                strategies.push({ id: newId, ...formData });
+                console.log('Strategy added. New count:', strategies.length);
+            }
+
+            // Reset search and filters
+            document.getElementById('searchInput').value = '';
+            document.getElementById('categoryFilter').value = '';
+            
+            // Close modal first
+            closeModal();
+            
+            // Then update UI
+            setTimeout(() => {
+                loadStrategies();
+                updateStats();
+                console.log('UI updated');
+            }, 100);
+            
+            // Show success message
+            alert('✅ تم حفظ الاستراتيجية بنجاح!');
+            
+            return false;
+        }
+
+        // Get uploaded files
+        function getUploadedFiles() {
+            const fileInput = document.getElementById('files');
+            const files = [];
+            
+            if (fileInput && fileInput.files) {
+                for (let i = 0; i < fileInput.files.length; i++) {
+                    files.push(fileInput.files[i].name);
+                }
+            }
+            
+            return files.length > 0 ? files : ['لا توجد مرفقات'];
+        }
+
+        // Update file display
+        function updateFileDisplay() {
+            const fileInput = document.getElementById('files');
+            const fileDiv = fileInput.parentElement;
+            const fileCount = fileInput.files.length;
+            
+            if (fileCount > 0) {
+                fileDiv.querySelector('p').textContent = `✓ تم اختيار ${fileCount} ملف`;
+            }
+        }
+
+        // Update stats
+        function updateStats() {
+            const totalStrategies = strategies.length;
+            const uniqueTeachers = new Set(strategies.map(s => s.teacher)).size;
+            const totalFiles = strategies.reduce((sum, s) => sum + s.files.length, 0);
+
+            document.querySelector('.stat-card:nth-child(1) .stat-value').textContent = totalStrategies;
+            document.querySelector('.stat-card:nth-child(2) .stat-value').textContent = uniqueTeachers;
+            document.querySelector('.stat-card:nth-child(3) .stat-value').textContent = totalFiles;
+            
+            // Update teachers stats
+            updateTeachersStats();
+        }
+
+        // Update teachers statistics
+        function updateTeachersStats() {
+            const teachersStatsContainer = document.getElementById('teachersStats');
+            
+            if (strategies.length === 0) {
+                teachersStatsContainer.innerHTML = '<div class="no-teachers-message">👩‍🏫 لا توجد إحصائيات بعد. ابدأ بإضافة الاستراتيجيات!</div>';
+                return;
+            }
+
+            // Count strategies per teacher
+            const teacherCounts = {};
+            strategies.forEach(strategy => {
+                if (teacherCounts[strategy.teacher]) {
+                    teacherCounts[strategy.teacher]++;
+                } else {
+                    teacherCounts[strategy.teacher] = 1;
+                }
+            });
+
+            // Sort teachers by count (descending)
+            const sortedTeachers = Object.entries(teacherCounts)
+                .sort((a, b) => b[1] - a[1]);
+
+            // Create teacher stat cards
+            teachersStatsContainer.innerHTML = '';
+            sortedTeachers.forEach(([teacher, count], index) => {
+                const card = document.createElement('div');
+                card.className = 'teacher-stat-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                const initial = teacher.charAt(0);
+                const bgColors = [
+                    'linear-gradient(135deg, #3b82f6, #2563eb)',
+                    'linear-gradient(135deg, #10b981, #059669)',
+                    'linear-gradient(135deg, #f59e0b, #d97706)',
+                    'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+                    'linear-gradient(135deg, #ec4899, #db2777)',
+                    'linear-gradient(135deg, #06b6d4, #0891b2)'
+                ];
+                const bgColor = bgColors[index % bgColors.length];
+                
+                card.innerHTML = `
+                    <div class="teacher-avatar" style="background: ${bgColor};">
+                        ${initial}
+                    </div>
+                    <div class="teacher-info">
+                        <div class="teacher-name">${teacher}</div>
+                        <div class="teacher-count"><strong>${count}</strong> استراتيجية</div>
+                    </div>
+                `;
+                
+                teachersStatsContainer.appendChild(card);
+            });
+        }
+
+        // Close modal on outside click
+        document.getElementById('strategyModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Animate progress bars on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.getAttribute('data-width') || entry.target.style.width;
+                }
+            });
+        });
+
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+</body>
+</html>
