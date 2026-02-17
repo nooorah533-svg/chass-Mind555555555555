@@ -1391,7 +1391,38 @@
         document.querySelectorAll('.progress-fill').forEach(bar => {
             observer.observe(bar);
         });
-  
+  // 1. تعريف مفاتيح الاتصال (Firebase Config)
+const firebaseConfig = {
+  apiKey: "ضعي_هنا_API_KEY_الخاص_بكِ",
+  authDomain: "tamkeen-af7b5.firebaseapp.com",
+  projectId: "tamkeen-af7b5",
+  storageBucket: "tamkeen-af7b5.appspot.com",
+  messagingSenderId: "877448477153",
+  appId: "ضعي_هنا_APP_ID_الخاص_بكِ"
+};
+
+// 2. تشغيل النظام
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// 3. جعل الزر البرتقالي "يتحدث" مع قاعدة البيانات
+document.querySelector('.btn-orange').addEventListener('click', function() {
+    const strategyName = prompt("ما هو اسم الاستراتيجية التعليمية الجديدة؟");
+    
+    if (strategyName) {
+        db.collection("strategies").add({
+            name: strategyName,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then(() => {
+            alert("ممتاز يا نورة! تم حفظ الاستراتيجية في قاعدة بيانات تمكين.");
+            location.reload(); // لتحديث الصفحة وظهور الاسم الجديد
+        })
+        .catch((error) => {
+            alert("خطأ! تأكدي من تفعيل الـ Rules في Firebase");
+        });
+    }
+});
     
     
   // 1. إعدادات Firebase الخاصة بمشروع تمكين
