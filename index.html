@@ -1404,7 +1404,15 @@ const firebaseConfig = {
   appId: "ضعي_هنا_APP_ID_الخاص_بكِ"
 };
 
-// 2. تفعيل الاتصال بالقاعدة
+// بيانات مشروع تمكين - يجب أن تكون قبل initializeApp
+const firebaseConfig = {
+  apiKey: "ضعي_هنا_المفتاح_الخاص_بكِ",
+  authDomain: "tamkeen-af7b5.firebaseapp.com",
+  projectId: "tamkeen-af7b5",
+  storageBucket: "tamkeen-af7b5.appspot.com",
+  messagingSenderId: "877448477153",
+  appId: "1:877448477153:web:..." 
+};// 2. تفعيل الاتصال بالقاعدة
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
